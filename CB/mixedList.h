@@ -27,6 +27,7 @@ protected:
     Node *traverse_till(int );
 public:
          //To add various data types to the list
+         /*
          void addToList(int );
          void addToList(long int );
          void addToList(short int );
@@ -34,6 +35,7 @@ public:
          void addToList(double );
          void addToList(const char *);
          void addToList(char );
+         */
          //To remove a Node at index i
          void removeFromIndex(int );
          //To clear the entire List
@@ -41,9 +43,18 @@ public:
 
 
      //The constructor
-         mixedList(const char *,...);
+       //mixedList(const char *,...);
     //The default constructor
          mixedList();
+    //The OOP add method
+         mixedList& operator+(int);
+         mixedList& operator+(long int);
+         mixedList& operator+(short int);
+         mixedList& operator+(float);
+         mixedList& operator+(double);
+         mixedList& operator+(const char* str);
+         mixedList& operator+(char ch);
+
     //To display the contents of the List with a space in between
          void display();
 
