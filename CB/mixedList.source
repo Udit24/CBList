@@ -81,6 +81,7 @@ Node *mixedList::traverse_till(int index){ /*Keep traversing till i*/
             return newptr;   //Return the Node till which we traversed
          }
  //To add various data types to the list
+ /*
 void mixedList::addToList(int n){
             ptr=create_new_node(n);
             add(ptr);
@@ -109,6 +110,43 @@ void mixedList::addToList(char ch){
             ptr=create_new_node(ch);
             add(ptr);
          }
+*/
+//The OOP add method
+mixedList& mixedList::operator+(int n){
+            ptr=create_new_node(n);
+            add(ptr);
+            return *this;
+         }
+mixedList& mixedList::operator+(long int n){
+            ptr=create_new_node(n);
+            add(ptr);
+            return *this;
+         }
+mixedList& mixedList::operator+(short int n){
+            ptr=create_new_node(n);
+            add(ptr);
+            return *this;
+         }
+mixedList& mixedList::operator+(float f){
+            ptr=create_new_node(f);
+            add(ptr);
+            return *this;
+         }
+mixedList& mixedList::operator+(double e){
+            ptr=create_new_node(e);
+            add(ptr);
+            return *this;
+         }
+mixedList& mixedList::operator+(const char* str){
+            ptr=create_new_node(str);
+            add(ptr);
+            return *this;
+         }
+mixedList& mixedList::operator+(char ch){
+            ptr=create_new_node(ch);
+            add(ptr);
+            return *this;
+         }
 //To remove a Node at index i
 void mixedList::removeFromIndex(int i){
             if(i==0){newptr=start;start=start->next;delete newptr;counter--;return;} // removing the first node
@@ -131,6 +169,7 @@ void mixedList::clearList(){
     start=NULL;counter=0;
 }
 //The constructor
+/*
 mixedList::mixedList(const char *fmt,...){
         start=NULL;counter=0;
         va_list ap;
@@ -185,6 +224,7 @@ mixedList::mixedList(const char *fmt,...){
             }
             va_end(ap);
     }
+*/
 //The default constructor
 mixedList::mixedList(){
         start=NULL;counter=0;
