@@ -1,0 +1,281 @@
+#include "mixedList.h"
+
+//Creating node for all data types
+        /*Namely:
+            int
+            short
+            long
+            float
+            double
+            char
+            char* */
+
+
+ Node *mixedList::create_new_node(int n){
+        newptr=new Node;
+        newptr->i_val=n;
+        newptr->typeInfo='d';
+        newptr->next=NULL;
+        return newptr;
+    }
+Node *mixedList::create_new_node(short int n){
+        newptr=new Node;
+        newptr->h_val=n;
+        newptr->typeInfo='h';
+        newptr->next=NULL;
+        return newptr;
+    }
+Node *mixedList::create_new_node(long int n){
+        newptr=new Node;
+        newptr->l_val=n;
+        newptr->typeInfo='l';
+        newptr->next=NULL;
+        return newptr;
+    }
+Node *mixedList::create_new_node(float f){
+        newptr=new Node;
+        newptr->f_val=f;
+        newptr->typeInfo='f';
+        newptr->next=NULL;
+        return newptr;
+    }
+Node *mixedList::create_new_node(double e){
+        newptr=new Node;
+        newptr->e_val=e;
+        newptr->typeInfo='e';
+        newptr->next=NULL;
+        return newptr;
+    }
+Node *mixedList::create_new_node(const char *s){
+        newptr=new Node;
+        newptr->str=s;
+        newptr->typeInfo='s';
+        newptr->next=NULL;
+        return newptr;
+    }
+Node *mixedList::create_new_node(char ch){
+        newptr=new Node;
+        newptr->ch=ch;
+        newptr->typeInfo='c';
+        newptr->next=NULL;
+        return newptr;
+    }
+//To add a Node to the list
+void mixedList::add(Node *node){
+        if(start==NULL){
+            start=rear=node;
+        }
+        else{
+            rear->next=node;rear=node;
+        }
+        counter++;
+    }
+//Traversal till the index i
+Node *mixedList::traverse_till(int index){ /*Keep traversing till i*/
+            newptr=start;//printf(" index:%d ,counter:%d ",index,counter);
+            if(index>=counter-1){printf("\nAttempt to access a Node beyond the maximum index : ABORTED \n");return NULL;}
+
+            while(index-->=0){ // for zero indexing scheme
+                newptr=newptr->next;
+            }
+            return newptr;   //Return the Node till which we traversed
+         }
+ //To add various data types to the list
+void mixedList::addToList(int n){
+            ptr=create_new_node(n);
+            add(ptr);
+         }
+void mixedList::addToList(long int n){
+            ptr=create_new_node(n);
+            add(ptr);
+         }
+void mixedList::addToList(short int n){
+            ptr=create_new_node(n);
+            add(ptr);
+         }
+void mixedList::addToList(float f){
+            ptr=create_new_node(f);
+            add(ptr);
+         }
+void mixedList::addToList(double e){
+            ptr=create_new_node(e);
+            add(ptr);
+         }
+void mixedList::addToList(const char *s){
+            ptr=create_new_node(s);
+            add(ptr);
+         }
+void mixedList::addToList(char ch){
+            ptr=create_new_node(ch);
+            add(ptr);
+         }
+//To remove a Node at index i
+void mixedList::removeFromIndex(int i){
+            if(i==0){newptr=start;start=start->next;delete newptr;counter--;return;} // removing the first node
+            else if(i>=counter){printf("\n%dth element does not exists, No removal performed",i);return;} // If an index greater than the available is entered
+            ptr=traverse_till(i-2); // Traverse till the node before the node to be deleted , 2 is because the indexing starts from zero
+            /*General delete procedure*/
+            newptr=ptr->next;
+            ptr->next=newptr->next;
+            counter--;
+            delete newptr;
+         }
+//To clear the entire List
+void mixedList::clearList(){
+    ptr=start;
+    while(ptr!=NULL){
+        newptr=ptr;
+        ptr=ptr->next;
+        delete newptr;
+    }
+    start=NULL;counter=0;
+}
+//The constructor
+mixedList::mixedList(const char *fmt,...){
+        start=NULL;counter=0;
+        va_list ap;
+        const char *p;
+        float temp_f;
+        double temp_e;
+        long int temp_l;
+        short int temp_h;
+        char temp_c;
+            va_start(ap,fmt);
+
+            for(p=fmt;*p;p++){
+
+                if(*p != '%')continue;//Do nothing if anything other than a format specifier is entered
+
+                switch(*++p){
+                case 'd':
+                    ptr= create_new_node(va_arg(ap,int));
+                    add(ptr);
+                    break;
+                case 'f':
+                    temp_f=va_arg(ap,double);
+                    ptr=create_new_node(temp_f);
+                    add(ptr);
+                    break;
+                case 'e':
+                    temp_e=va_arg(ap,double);
+                    ptr=create_new_node(temp_e);
+                    add(ptr);
+                    break;
+                case 's':
+                    ptr=create_new_node(va_arg(ap,char*));
+                    add(ptr);
+                    break;
+                case 'c':
+                     temp_c=va_arg(ap,int);
+                    ptr=create_new_node(temp_c);
+                    add(ptr);
+                    break;
+                case 'l':
+                    temp_l=va_arg(ap,int);ptr= create_new_node(temp_l);
+                    add(ptr);
+
+                    break;
+                case 'h':
+                    temp_h=va_arg(ap,int);ptr= create_new_node(temp_h);
+                    add(ptr);
+                    break;
+                default: printf("\n no case entered");
+                }
+
+            }
+            va_end(ap);
+    }
+//The default constructor
+mixedList::mixedList(){
+        start=NULL;counter=0;
+    }
+//To display the contents of the List with a space in between
+void mixedList::display(){
+        newptr=start;
+            if(start==NULL){printf("\n No data items to be displayed");return;}
+        while(newptr!=NULL){
+            switch(newptr->typeInfo){
+                case 'd': printf(" %d",newptr->i_val); break;
+                case 'f': printf(" %f",newptr->f_val);break;
+                case 'e': printf(" %e",newptr->e_val);break;
+                case 's': printf(" %s",newptr->str);break;
+                case 'c': printf(" %c",newptr->ch);break;
+                case 'l': printf(" %ld",newptr->l_val);break;
+                case 'h': printf(" %hd",newptr->h_val);break;
+                default: printf("/n No defined type encountered");
+            }
+            newptr=newptr->next;
+        }
+    }
+//The getAtIndex() overloads...
+int mixedList::getAtIndex(int index,int overloadFactor){
+
+        ptr=traverse_till(index-1);
+            if(ptr->typeInfo!='d'){printf("\n The Node contains no integer element, garbage value returned :");return CB_RANDOM_INT;}
+        return ptr->i_val;
+    }
+long int mixedList::getAtIndex(int index,long int overloadFactor){
+
+        ptr=traverse_till(index-1);
+            if(ptr->typeInfo!='l'){printf("\n The Node contains no long integer element, garbage value returned :");return CB_RANDOM_LONG_INT;}
+        return ptr->l_val;
+    }
+char mixedList::getAtIndex(int index,char overloadFactor){
+        ptr=traverse_till(index-1);
+            if(ptr->typeInfo!='c'){printf("\n The Node contains no char element, garbage value returned :");return CB_RANDOM_CHAR;}
+        return ptr->ch;
+    }
+float mixedList::getAtIndex(int index,float overloadFactor){
+        ptr=traverse_till(index-1);
+            if(ptr->typeInfo!='f'){printf("\n The Node contains no float element, garbage value returned :");return CB_RANDOM_FLOAT;}
+        return ptr->f_val;
+    }
+double mixedList::getAtIndex(int index,double overloadFactor){
+
+        ptr=traverse_till(index-1);
+            if(ptr->typeInfo!='e'){printf("\n The Node contains no double precision element, garbage value returned :");return CB_RANDOM_DOUBLE;}
+        return ptr->e_val;
+    }
+const char* mixedList::getAtIndex(int index,const char* overloadFactor){
+        ptr=traverse_till(index-1);
+            if(ptr->typeInfo!='s'){printf("\n The Node contains no string element, garbage value returned :");return CB_RANDOM_STRING;}
+        return ptr->str;
+    }
+//putAtIndex() overloads...
+void mixedList::putAtIndex(int index,int data){
+            ptr=traverse_till(index-1);if(ptr==NULL)return;
+                ptr->i_val=data;
+                ptr->typeInfo='d';
+        }
+void mixedList::putAtIndex(int index,long int data){
+            ptr=traverse_till(index-1);if(ptr==NULL)return;
+                ptr->l_val=data;
+                ptr->typeInfo='l';
+        }
+void mixedList::putAtIndex(int index,short int data){
+            ptr=traverse_till(index-1);if(ptr==NULL)return;
+                ptr->h_val=data;
+                ptr->typeInfo='h';
+        }
+void mixedList::putAtIndex(int index,char data){
+            ptr=traverse_till(index-1);if(ptr==NULL)return;
+                ptr->ch=data;
+                ptr->typeInfo='c';
+        }
+void mixedList::putAtIndex(int index,float data){
+            ptr=traverse_till(index-1);if(ptr==NULL)return;
+                ptr->f_val=data;
+                ptr->typeInfo='f';
+        }
+void mixedList::putAtIndex(int index,double data){
+            ptr=traverse_till(index-1);if(ptr==NULL)return;
+                ptr->e_val=data;
+                ptr->typeInfo='e';
+        }
+void mixedList::putAtIndex(int index,char* data){
+            ptr=traverse_till(index-1);if(ptr==NULL)return;
+                ptr->str=data;
+                ptr->typeInfo='s';
+        }
+//To return the no of Nodes in the List
+int mixedList::getCount(){return counter;}
