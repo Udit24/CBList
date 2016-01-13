@@ -6,7 +6,7 @@
 	* In your source file just type ``` #include “CB/List.h” ```
 > And we are done , you can get going with it right ways.
 ##Tutorial
-** The declaration **
+**The declaration**
 ** Standard array declaration: **
 ```
 int arr[10]={1,2,3,4,5,6,7,8,9,0};
