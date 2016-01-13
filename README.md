@@ -1,14 +1,13 @@
 # CBList
-> This is a C++ Header file, that aims to eliminate the disadvantages of an array by still maintaining its advantages; in other words it aspires to improve "Lists" in C++
+> This is a C++ Header file, that aims to eliminate the disadvantages of an array by still maintaining its advantages; in other words it aspires to improve "Lists" in C++ 
 ##Including the Header file
-	> Download and extract the ZIP file from [here](https://github.com/Udit24/CBList).
-	> Paste the 'CB' folder to your working directory.
-	> In your source file just type ``` #include “CB/List.h” ```
+	Download and extract the ZIP file from "https://github.com/Udit24/CBList"
+	Paste the 'CB' folder to your working directory.
+	In your source file just type ``` #include “CB/List.h” ```
 > And we are done , you can get going with it right ways.
 ##Tutorial
-**The declaration**
 
-**Standard array declaration:**
+ **Standard array declaration:**
 ```
 int arr[10]={1,2,3,4,5,6,7,8,9,0};
 ```
@@ -57,16 +56,24 @@ int a_variable=arr.getAtIndex(3,CB_INT);
 > which requires the programmer to know in prior the data type stored at a particular index.
 
 > The list of overload factors include:
-**CB_INT** *for integer type *
-**CB_LONG_INT** *for long integer type *
-**CB_CHAR** *for character type * 
-**CB_FLOAT** *for floating type *
-**CB_DOUBLE** *for double type *
-**CB_STRING** *for string type *
+
+**CB_INT** for integer type 
+
+**CB_LONG_INT** for long integer type 
+
+**CB_CHAR** for character type 
+
+**CB_FLOAT** for floating type 
+
+**CB_DOUBLE** for double type 
+
+**CB_STRING** for string type 
+
 > Hence to get the value at an Index which contains character type value, we simply call the getAtIndex() member function with the character overloading factor, i.e. 
 ```
 char a_var=arr.getAtIndex(3,CB_CHAR);
 ```
+
 **To assign an element to an Index in an array:**
 ```
 arr[5]=11;
@@ -77,12 +84,13 @@ arr.putAtIndex(5,11);
 ```
 > The first parameter of the function putAtIndex() specifies the index at which the insertion takes place, and the second parameter is the value to be inserted at that index.
 
-**To display the contents of an array **
+**To display the contents of an array**
 ```
 for( int i=0 ; i<SIZE_OF_ARRAY ; i++){
 	cout<<arr[i];
 }
 ```
+
 **To display the contents of CBList:**
 ```
 arr.display();
@@ -90,10 +98,12 @@ arr.display();
 **To get the size of an array:**
 > C++ standard library <string.h> has a function strlen() that returns the size of the array, by checking for the ‘\0’ character; 
 > However that’s not true for a vector (integer type array) or arrays of other types.
+
 **To get the size of a CBList:**
 ```
 arr.getCount();
 ```
+
 **To clear the List :**
 ```
 arr.clearList();
