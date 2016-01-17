@@ -62,6 +62,8 @@ Node *mixedList::create_new_node(char ch){
     }
 //To add a Node to the list
 void mixedList::add(Node *node){
+        if(node==NULL){printf("\n Out of memory exception !!!");
+        return;}
         if(start==NULL){
             start=rear=node;
         }
@@ -227,7 +229,7 @@ mixedList::mixedList(const char *fmt,...){
 */
 //The default constructor
 mixedList::mixedList(){
-        start=NULL;counter=0;
+        start=NULL;counter=0;index=-1;
     }
 //To display the contents of the List with a space in between
 void mixedList::display(){
@@ -312,10 +314,126 @@ void mixedList::putAtIndex(int index,double data){
                 ptr->e_val=data;
                 ptr->typeInfo='e';
         }
-void mixedList::putAtIndex(int index,char* data){
+void mixedList::putAtIndex(int index,const char* data){
             ptr=traverse_till(index-1);if(ptr==NULL)return;
                 ptr->str=data;
                 ptr->typeInfo='s';
         }
 //To return the no of Nodes in the List
-int mixedList::getCount(){return counter;}
+long int mixedList::getCount(){return counter;}
+
+//To activate an index
+void mixedList::activateIndex(int index){
+        if(index<0 || index >=counter ){printf("\n index : %d out of range",index);return;}
+            this->index=index;
+}
+//Get OOP method :
+ int mixedList::operator<<(int overloadFactor){
+        if(index==-1){
+            printf("\n No index activated, activate an index to fetch data. A garbage value returned");
+            return CB_RANDOM_INT;
+        }
+            ptr=traverse_till(this->index-1);
+            if(ptr->typeInfo!='d'){printf("\n The Node contains no integer element, garbage value returned :");return CB_RANDOM_INT;}
+        return ptr->i_val;
+ }
+ long int mixedList::operator<<(long int overloadFactor){
+       if(index==-1){
+            printf("\n No index activated, activate an index to fetch data. A garbage value returned");
+            return CB_RANDOM_LONG_INT;
+        }
+        ptr=traverse_till(this->index-1);
+            if(ptr->typeInfo!='l'){printf("\n The Node contains no long integer element, garbage value returned :");return CB_RANDOM_LONG_INT;}
+        return ptr->l_val;
+    }
+char mixedList::operator<<(char overloadFactor){
+     if(index==-1){
+            printf("\n No index activated, activate an index to fetch data. A garbage value returned");
+            return CB_RANDOM_CHAR;
+        }
+        ptr=traverse_till(this->index-1);
+            if(ptr->typeInfo!='c'){printf("\n The Node contains no char element, garbage value returned :");return CB_RANDOM_CHAR;}
+        return ptr->ch;
+    }
+float mixedList::operator<<(float overloadFactor){
+    if(index==-1){
+            printf("\n No index activated, activate an index to fetch data. A garbage value returned");
+            return CB_RANDOM_FLOAT;
+        }
+        ptr=traverse_till(this->index-1);
+            if(ptr->typeInfo!='f'){printf("\n The Node contains no float element, garbage value returned :");return CB_RANDOM_FLOAT;}
+        return ptr->f_val;
+    }
+double mixedList::operator<<(double overloadFactor){
+    if(index==-1){
+            printf("\n No index activated, activate an index to fetch data. A garbage value returned");
+            return CB_RANDOM_DOUBLE;
+        }
+        ptr=traverse_till(this->index-1);
+            if(ptr->typeInfo!='e'){printf("\n The Node contains no double precision element, garbage value returned :");return CB_RANDOM_DOUBLE;}
+        return ptr->e_val;
+    }
+const char* mixedList::operator<<(const char* overloadFactor){
+    if(index==-1){
+            printf("\n No index activated, activate an index to fetch data. A garbage value returned");
+            return CB_RANDOM_STRING;
+        }
+        ptr=traverse_till(this->index-1);
+            if(ptr->typeInfo!='s'){printf("\n The Node contains no string element, garbage value returned :");return CB_RANDOM_STRING;}
+        return ptr->str;
+    }
+//Put OOP method :
+void mixedList::operator>>(int data){
+        if(index==-1){
+            printf("\n No index activated, activate an index to assign data.");
+            return ;
+        }
+            ptr=traverse_till(this->index-1);if(ptr==NULL)return;
+                ptr->i_val=data;
+                ptr->typeInfo='d';
+        }
+void mixedList::operator>>(long int data){
+        if(index==-1){
+            printf("\n No index activated, activate an index to assign data.");
+            return ;
+        }
+            ptr=traverse_till(this->index-1);if(ptr==NULL)return;
+                ptr->l_val=data;
+                ptr->typeInfo='l';
+        }
+void mixedList::operator>>(char data){
+        if(index==-1){
+            printf("\n No index activated, activate an index to assign data.");
+            return ;
+        }
+            ptr=traverse_till(this->index-1);if(ptr==NULL)return;
+                ptr->ch=data;
+                ptr->typeInfo='c';
+        }
+void mixedList::operator>>(float data){
+        if(index==-1){
+            printf("\n No index activated, activate an index to assign data.");
+            return ;
+        }
+            ptr=traverse_till(this->index-1);if(ptr==NULL)return;
+                ptr->f_val=data;
+                ptr->typeInfo='f';
+        }
+void mixedList::operator>>(double data){
+        if(index==-1){
+            printf("\n No index activated, activate an index to assign data.");
+            return ;
+        }
+            ptr=traverse_till(this->index-1);if(ptr==NULL)return;
+                ptr->e_val=data;
+                ptr->typeInfo='e';
+        }
+void mixedList::operator>>(const char* data){
+        if(index==-1){
+            printf("\n No index activated, activate an index to assign data.");
+            return ;
+        }
+            ptr=traverse_till(this->index-1);if(ptr==NULL)return;
+                ptr->str=data;
+                ptr->typeInfo='s';
+        }
