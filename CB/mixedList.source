@@ -382,6 +382,7 @@ const char* mixedList::operator<<(const char* overloadFactor){
             if(ptr->typeInfo!='s'){printf("\n The Node contains no string element, garbage value returned :");return CB_RANDOM_STRING;}
         return ptr->str;
     }
+
 //Put OOP method :
 void mixedList::operator>>(int data){
         if(index==-1){
