@@ -1,10 +1,13 @@
 # CBList
+<img src="https://github.com/Udit24/CBList/blob/master/CB/codebook.jpg" alt="CODEBOOK" width="200" height="200"> 
 > This is a C++ Header file, that aims to eliminate the disadvantages of an array by still maintaining its advantages; in other words it aspires to improve "Lists" in C++ 
+
 ##Including the Header file
 	Download and extract the ZIP file from "https://github.com/Udit24/CBList"
 	Paste the 'CB' folder to your working directory.
 	In your source file just type ``` #include “CB/List.h” ```
 > And we are done , you can get going with it right ways.
+
 ##Tutorial
 
  **Standard array declaration:**
