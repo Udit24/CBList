@@ -3,8 +3,10 @@
 #endif // LIST_H_INCLUDED
 
 class mixedList{
+public :
+    int index;
 protected:
-    int counter; //Keeps a count of the number of Nodes in the List, it is only updated inside the add(Node *) function and removeFromIndex() function
+    long int counter; //Keeps a count of the number of Nodes in the List, it is only updated inside the add(Node *) function and removeFromIndex() function
     //Creating node for all data types
         /*Namely:
             int
@@ -75,8 +77,24 @@ public:
          void putAtIndex(int ,char );
          void putAtIndex(int ,float );
          void putAtIndex(int ,double );
-         void putAtIndex(int ,char* );
+         void putAtIndex(int ,const char* );
     //To return the no of Nodes in the List
-         int getCount();
+         long int getCount();
+    // Activate an index
+         void activateIndex(int);
+    //Get OOP method :
+        int operator<<(int);
+        long int operator<<(long int );
+        char operator<<(char );
+        float operator<<(float );
+        double operator<<(double );
+        const char* operator<<(const char* );
+    //Put OOP method :
+        void operator>>(int);
+        void operator>>(long int );
+        void operator>>(char );
+        void operator>>(float );
+        void operator>>(double );
+        void operator>>(const char* );
 };
 
