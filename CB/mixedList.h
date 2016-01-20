@@ -89,7 +89,6 @@ public:
         float operator<<(float );
         double operator<<(double );
         const char* operator<<(const char* );
-
     //Put OOP method :
         void operator=(int);
         void operator=(long int );
