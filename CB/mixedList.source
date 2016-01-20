@@ -384,7 +384,7 @@ const char* mixedList::operator<<(const char* overloadFactor){
     }
 
 //Put OOP method :
-void mixedList::operator>>(int data){
+void mixedList::operator=(int data){
         if(index==-1){
             printf("\n No index activated, activate an index to assign data.");
             return ;
@@ -393,7 +393,7 @@ void mixedList::operator>>(int data){
                 ptr->i_val=data;
                 ptr->typeInfo='d';
         }
-void mixedList::operator>>(long int data){
+void mixedList::operator=(long int data){
         if(index==-1){
             printf("\n No index activated, activate an index to assign data.");
             return ;
@@ -402,7 +402,7 @@ void mixedList::operator>>(long int data){
                 ptr->l_val=data;
                 ptr->typeInfo='l';
         }
-void mixedList::operator>>(char data){
+void mixedList::operator=(char data){
         if(index==-1){
             printf("\n No index activated, activate an index to assign data.");
             return ;
@@ -411,7 +411,7 @@ void mixedList::operator>>(char data){
                 ptr->ch=data;
                 ptr->typeInfo='c';
         }
-void mixedList::operator>>(float data){
+void mixedList::operator=(float data){
         if(index==-1){
             printf("\n No index activated, activate an index to assign data.");
             return ;
@@ -420,7 +420,7 @@ void mixedList::operator>>(float data){
                 ptr->f_val=data;
                 ptr->typeInfo='f';
         }
-void mixedList::operator>>(double data){
+void mixedList::operator=(double data){
         if(index==-1){
             printf("\n No index activated, activate an index to assign data.");
             return ;
@@ -429,7 +429,7 @@ void mixedList::operator>>(double data){
                 ptr->e_val=data;
                 ptr->typeInfo='e';
         }
-void mixedList::operator>>(const char* data){
+void mixedList::operator=(const char* data){
         if(index==-1){
             printf("\n No index activated, activate an index to assign data.");
             return ;

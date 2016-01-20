@@ -91,11 +91,11 @@ public:
         const char* operator<<(const char* );
 
     //Put OOP method :
-        void operator>>(int);
-        void operator>>(long int );
-        void operator>>(char );
-        void operator>>(float );
-        void operator>>(double );
-        void operator>>(const char* );
+        void operator=(int);
+        void operator=(long int );
+        void operator=(char );
+        void operator=(float );
+        void operator=(double );
+        void operator=(const char* );
 };
 
