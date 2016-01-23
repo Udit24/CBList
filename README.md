@@ -43,6 +43,32 @@ arr+ ”String 1” + ’a’ + 100 + 37.5f + ”String 2”;
 
 > This adds “String 1” a string , ‘a’ a character , 100 an integer , 37.5 a floating point number and another string “String 2” ; quite easily without any conflict.
 
+**Adding string from console**
+> Adding strings from console possess some difficulties as console scanner functions present in the standard C++ library , are accustomed to work with base addresses of an array and are not quite friendly with our CBList.
+
+> CBList comes with a solution for this as well
+
+```
+int size_of_string=20;
+const char * name=arr.scanString(size_of_string);
+```
+> The scanString() function , takes the number of characters to scan and returns the base address of the stored string
+
+> This function however does not add the string to the List, adding the string takes place in the usual fashion, i.e ,
+
+```
+int size_of_string=20;
+const char * name=arr.scanString(size_of_string);
+arr+name;
+```
+OR
+
+```
+int size_of_string=20;
+arr+(arr.scanString(size_of_string));
+```
+
+
 **Removing an element from a particular index in an array:**
 ```
 int Index_tobe_removed=3;
