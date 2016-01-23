@@ -96,5 +96,7 @@ public:
         void operator=(float );
         void operator=(double );
         void operator=(const char* );
+    // String scanner
+        const char* scanString(int);
 };
 
